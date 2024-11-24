@@ -1,0 +1,11 @@
+<h2>Personalized Recommendations</h2>
+{% if recommendations %}
+    <ul>
+        {% for rec in recommendations %}
+        <li>{{ rec['subject'] }} for {{ rec['duration'] }} mins on {{ rec['session_date'] }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No recommendations available.</p>
+{% endif %}
+<a href="/dashboard">Back to Dashboard</a>

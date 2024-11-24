@@ -1,0 +1,10 @@
+<h2>Welcome, {{ name }}</h2>
+<form method="POST" action="/add_session">
+    <input type="text" name="subject" placeholder="Subject" required>
+    <input type="number" name="duration" placeholder="Duration (minutes)" required>
+    <input type="number" name="focus" placeholder="Focus Level (1-5)" required>
+    <input type="text" name="mood" placeholder="Mood" required>
+    <input type="text" name="environment" placeholder="Environment" required>
+    <button type="submit">Log Session</button>
+</form>
+<a href="/recommendations">View Recommendations</a> | <a href="/analytics">Analytics</a>
