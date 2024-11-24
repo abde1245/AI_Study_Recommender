@@ -54,8 +54,17 @@ def login():
             flash("Invalid credentials", "danger")
     return render_template('login.html')
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+# Dashboard
+@app.route('/dashboard')
 def dashboard():
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    return render_template('dashboard.html', name=session['name'])
+
+# Add Study Session
+@app.route('/add_session', methods=['GET', 'POST'])
+def add_session():
     if 'user_id' not in session:
         return redirect('/login')
 
@@ -72,9 +81,9 @@ def dashboard():
         cursor.close()
         connection.close()
         flash("Study session added!", "success")
+        return redirect('/dashboard')
 
-    return render_template('dashboard.html', name=session['name'])
-
+    return render_template('add_session.html')
 
 @app.route('/analytics')
 def analytics():
@@ -83,7 +92,12 @@ def analytics():
 
     user_id = session['user_id']
     study_chart = plot_study_distribution(user_id)
+    if not study_chart:
+        flash("No study session data available.", "warning")
+        return redirect('/dashboard')
+
     return render_template('analytics.html', study_chart=study_chart)
+
 
 @app.route('/recommendations')
 def recommendations():
@@ -128,5 +142,4 @@ def logout():
     return redirect('/')
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 8080)
-
+    app.run(debug=True, port=8080)

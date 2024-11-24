@@ -1,5 +1,6 @@
 import mysql.connector
 from flask import flash
+import pandas as pd
 
 def connect_to_db():
     try:

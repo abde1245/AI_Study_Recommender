@@ -1,40 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Study Session</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Add Study Session</h1>
+{% extends 'base.html' %}
 
-        <!-- Display any Flash messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul>
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-
-        <!-- Form to add study session -->
-        <form action="{{ url_for('dashboard') }}" method="POST">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required placeholder="Enter subject (e.g., Math, Science)" />
-
-            <label for="duration">Duration (in minutes)</label>
-            <input type="number" id="duration" name="duration" required placeholder="Enter duration in minutes" />
-
-            <button type="submit">Add Session</button>
-        </form>
-
-        <br>
-
-        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
-    </div>
-</body>
-</html>
+{% block content %}
+<div class="container mt-5">
+    <h2>Add Study Session</h2>
+    <form action="{{ url_for('add_session') }}" method="POST">
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" required>
+        </div>
+        <div class="mb-3">
+            <label for="duration" class="form-label">Duration (in minutes)</label>
+            <input type="number" class="form-control" id="duration" name="duration" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Session</button>
+    </form>
+</div>
+{% endblock %}
