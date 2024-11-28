@@ -1,4 +1,3 @@
-# analytics.py
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64

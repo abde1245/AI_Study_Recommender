@@ -1,2 +1,16 @@
-<h1>Welcome to the AI Study Recommendation System</h1>
-<a href="/login">Login</a> | <a href="/register">Register</a>
+<head> <link rel="stylesheet" href="style.css">
+{% extends 'base.html' %}
+
+{% block title %}Home - Study Recommendation System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome to the Study Recommendation System</h2>
+    <p>Maximize your productivity with personalized study session recommendations and analytics.</p>
+
+    <div class="actions">
+        <a href="/register" class="button">Register</a>
+        <a href="/login" class="button">Login</a>
+    </div>
+</div>
+{% endblock %}

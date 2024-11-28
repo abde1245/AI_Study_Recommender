@@ -1,0 +1,53 @@
+<head> <link rel="stylesheet" href="style.css">
+
+<!-- templates/analytics.html -->
+{% extends 'base.html' %}
+<head><link rel="stylesheet" href="style.css"></head>
+{% block content %}
+<div class="analytics-container">
+    <h2>Study Analytics</h2>
+    {% if study_chart %}
+        <div class="chart-container">
+            <img src="data:image/png;base64,{{ study_chart }}" alt="Study Distribution Chart">
+        </div>
+    {% else %}
+        <p>No study sessions recorded yet.</p>
+    {% endif %}
+    <a href="/dashboard" class="btn">Back to Dashboard</a>
+</div>
+{% endblock %}
+
+
+.btn {
+    display: inline-block;
+    background: #007BFF;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Responsive Adjustments for Analytics Page */
+@media (max-width: 768px) {
+    .analytics-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .analytics-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+

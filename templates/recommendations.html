@@ -1,11 +1,37 @@
+<head> <link rel="stylesheet" href="style.css">
 <h2>Personalized Recommendations</h2>
+
 {% if recommendations %}
     <ul>
         {% for rec in recommendations %}
-        <li>{{ rec['subject'] }} for {{ rec['duration'] }} mins on {{ rec['session_date'] }}</li>
+            <li>
+                {{ rec.suggestion }} (Recommended on: {{ rec.recommendation_date.strftime('%Y-%m-%d %H:%M:%S') }})
+                <br>
+                {% if rec.rating %}
+                   Your rating : {{ rec.rating }}
+                   <br>
+                   Your Feedback: {{ rec.comments }}
+                {% else %}
+                    <form method="POST">
+                        <input type="hidden" name="recommendation_id" value="{{ rec.recommendation_id }}">
+                        <select name="rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <textarea name="comments" placeholder="Provide feedback (optional)"></textarea>
+                        <button type="submit">Submit Feedback</button>
+                    </form>
+                {% endif %}
+
+                <hr>
+            </li>
         {% endfor %}
     </ul>
 {% else %}
-    <p>No recommendations available.</p>
+    <p>No recommendations available yet.</p>  <!-- Indicate recommendations might be generated later -->
 {% endif %}
+
 <a href="/dashboard">Back to Dashboard</a>

@@ -1,0 +1,16 @@
+<!-- templates/analytics.html -->
+{% extends 'base.html' %}
+<head><link rel="stylesheet" href="style.css"></head>
+{% block content %}
+<div class="analytics-container">
+    <h2>Study Analytics</h2>
+    {% if study_chart %}
+        <div class="chart-container">
+            <img src="data:image/png;base64,{{ study_chart }}" alt="Study Distribution Chart">
+        </div>
+    {% else %}
+        <p>No study sessions recorded yet.</p>
+    {% endif %}
+    <a href="/dashboard" class="btn">Back to Dashboard</a>
+</div>
+{% endblock %}

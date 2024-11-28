@@ -1,18 +1,26 @@
+<head> <link rel="stylesheet" href="style.css">
 {% extends 'base.html' %}
 
+{% block title %}Add Study Session{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2>Add Study Session</h2>
-    <form action="{{ url_for('add_session') }}" method="POST">
-        <div class="mb-3">
-            <label for="subject" class="form-label">Subject</label>
-            <input type="text" class="form-control" id="subject" name="subject" required>
-        </div>
-        <div class="mb-3">
-            <label for="duration" class="form-label">Duration (in minutes)</label>
-            <input type="number" class="form-control" id="duration" name="duration" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Session</button>
-    </form>
-</div>
+<h2>Add Study Session</h2>
+<form method="POST">
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" required>
+
+    <label for="duration">Duration (minutes):</label>
+    <input type="number" name="duration" required>
+
+    <label for="focus">Focus Level (1-5):</label>
+    <input type="number" name="focus" min="1" max="5" required>
+
+    <label for="mood">Mood:</label>
+    <input type="text" name="mood" required>
+
+    <label for="environment">Study Environment:</label>
+    <input type="text" name="environment" required>
+
+    <button type="submit">Add Session</button>
+</form>
 {% endblock %}
